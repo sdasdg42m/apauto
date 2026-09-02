@@ -18,7 +18,9 @@ export default async function handler(req, res) {
     name = 'Not specified',
     phone = 'Not specified',
     hookups = 'Not specified',
-    location = 'Not specified'
+    location = 'Not specified',
+    addons = 'None',
+    addonsTotal = 0
   } = req.body || {};
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -44,7 +46,8 @@ export default async function handler(req, res) {
           <p style="margin: 0 0 12px 0; font-size: 15px; color: #333;"><strong>Service:</strong> ${esc(service)}</p>
           <p style="margin: 0 0 12px 0; font-size: 15px; color: #333;"><strong>Vehicle:</strong> ${esc(vehicle)}</p>
           <p style="margin: 0 0 12px 0; font-size: 15px; color: #333;"><strong>Location:</strong> ${esc(location)}</p>
-          <p style="margin: 0; font-size: 15px; color: #333;"><strong>Water on-site:</strong> ${esc(hookups)}</p>
+          <p style="margin: 0 0 12px 0; font-size: 15px; color: #333;"><strong>Water on-site:</strong> ${esc(hookups)}</p>
+          <p style="margin: 0; font-size: 15px; color: #333;"><strong>Add-ons:</strong> ${esc(addons)}${Number(addonsTotal) > 0 ? ` <span style="color:#2b7fff; font-weight:700;">(+$${Number(addonsTotal)})</span>` : ''}</p>
         </div>
 
         <div style="border-top: 1px solid #eee; padding-top: 15px; margin-bottom: 15px;">
