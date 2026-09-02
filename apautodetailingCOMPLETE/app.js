@@ -102,6 +102,19 @@ $('#lightbox').addEventListener('click', () => $('#lightbox').hidden = true);
   const status = $('#qStatus');
   const submitBtn = $('#qSubmit');
 
+  // Add-ons: keep a running total visible so the quote isn't a surprise
+  const addonBoxes = $$('#qAddons input[type="checkbox"]');
+  const addonTotalEl = $('#qAddonTotal');
+  const selectedAddons = () => addonBoxes.filter(b => b.checked);
+  const addonSum = () => selectedAddons().reduce((n, b) => n + Number(b.dataset.price || 0), 0);
+  const refreshAddonTotal = () => {
+    const sum = addonSum();
+    addonTotalEl.hidden = sum === 0;
+    addonTotalEl.querySelector('strong').textContent = `+$${sum}`;
+  };
+  addonBoxes.forEach(b => b.addEventListener('change', refreshAddonTotal));
+  refreshAddonTotal();
+
   // Pre-select service when a pricing "Book This" button is clicked
   $$('[data-service]').forEach(btn => btn.addEventListener('click', () => {
     const sel = $('#qService');
@@ -122,6 +135,7 @@ $('#lightbox').addEventListener('click', () => $('#lightbox').hidden = true);
       return;
     }
 
+    const chosen = selectedAddons();
     const payload = {
       name, phone,
       vehicle: $('#qVehicle').value.trim() || 'Not specified',
@@ -129,7 +143,9 @@ $('#lightbox').addEventListener('click', () => $('#lightbox').hidden = true);
       location: $('#qLocation').value.trim() || 'Not specified',
       hookups: $('#qHookups').checked ? 'Yes — water available on-site' : 'Customer unsure / not confirmed',
       date: $('#qNotes').value.trim() || '—',   // notes carried in the "date" field the email template reads
-      time: ''
+      time: '',
+      addons: chosen.map(b => `${b.dataset.addon} (+$${b.dataset.price})`).join(', ') || 'None',
+      addonsTotal: addonSum()
     };
 
     submitBtn.disabled = true;
@@ -150,6 +166,7 @@ $('#lightbox').addEventListener('click', () => $('#lightbox').hidden = true);
 
     if (ok) {
       form.reset();
+      refreshAddonTotal();   // reset() clears the boxes; keep the total in step
       status.className = 'qf-status ok';
       status.innerHTML = '✅ Got it! Parker will reach out shortly. For the fastest response, call or text <a href="tel:3364027336">336-402-7336</a>.';
     } else {

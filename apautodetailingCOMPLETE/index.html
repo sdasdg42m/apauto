@@ -419,6 +419,28 @@
         <input type="text" id="qLocation" name="location" placeholder="e.g. Kernersville, 27284" />
       </label>
 
+      <fieldset class="qf-addons" id="qAddons">
+        <legend>Add-ons <em>(optional — added to your quote)</em></legend>
+
+        <p class="addon-group-label">Interior</p>
+        <label class="addon"><input type="checkbox" data-addon="Carpet shampoo &amp; seat extraction" data-price="45" />
+          <span class="addon-name">Carpet shampoo &amp; seat extraction</span><span class="addon-price">+$45</span></label>
+        <label class="addon"><input type="checkbox" data-addon="Steam cleaning" data-price="15" />
+          <span class="addon-name">Steam cleaning</span><span class="addon-price">+$15</span></label>
+        <label class="addon"><input type="checkbox" data-addon="Interior dressing" data-price="15" />
+          <span class="addon-name">Interior dressing</span><span class="addon-price">+$15</span></label>
+
+        <p class="addon-group-label">Exterior</p>
+        <label class="addon"><input type="checkbox" data-addon="Clay bar paint decontamination" data-price="45" />
+          <span class="addon-name">Clay bar paint decontamination</span><span class="addon-price">+$45</span></label>
+        <label class="addon"><input type="checkbox" data-addon="Engine bay cleaning" data-price="45" />
+          <span class="addon-name">Engine bay cleaning</span><span class="addon-price">+$45</span></label>
+        <label class="addon"><input type="checkbox" data-addon="Water spot removal" data-price="50" />
+          <span class="addon-name">Water spot removal</span><span class="addon-price">+$50</span></label>
+
+        <p class="addon-total" id="qAddonTotal" hidden>Add-ons selected: <strong>+$0</strong></p>
+      </fieldset>
+
       <label class="qf-field">
         <span>Anything else? <em>(preferred day/time, condition, questions)</em></span>
         <textarea id="qNotes" name="notes" rows="3" placeholder="Optional — tell Parker what works for you."></textarea>
@@ -437,15 +459,20 @@
       <div class="qs-card">
         <h3>Rather just talk?</h3>
         <p>We answer our own phones. Call or text either of us for the fastest response.</p>
-        <a href="tel:3364027336" class="btn btn-primary btn-block btn-shine">
-          <svg viewBox="0 0 24 24" width="18" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1z"/></svg>
-          Call Parker · 336-402-7336
-        </a>
-        <a href="tel:3368137740" class="btn btn-ghost btn-block">
-          <svg viewBox="0 0 24 24" width="18" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1z"/></svg>
-          Call Peyton · 336-813-7740
-        </a>
-        <a href="sms:3364027336" class="btn btn-ghost btn-block">Text Parker</a>
+        <div class="qs-person">
+          <span class="qs-name">Parker <em>336-402-7336</em></span>
+          <div class="qs-actions">
+            <a href="tel:3364027336" class="btn btn-primary btn-shine">Call</a>
+            <a href="sms:3364027336" class="btn btn-ghost">Text</a>
+          </div>
+        </div>
+        <div class="qs-person">
+          <span class="qs-name">Peyton <em>336-813-7740</em></span>
+          <div class="qs-actions">
+            <a href="tel:3368137740" class="btn btn-primary btn-shine">Call</a>
+            <a href="sms:3368137740" class="btn btn-ghost">Text</a>
+          </div>
+        </div>
       </div>
       <ul class="qs-perks">
         <li><svg viewBox="0 0 24 24" width="20" aria-hidden="true"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg> Same-day quotes, no pressure</li>
