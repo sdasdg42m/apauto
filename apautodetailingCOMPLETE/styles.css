@@ -378,6 +378,7 @@ section{position:relative}
 .addon:hover{background:rgba(43,127,255,.08)}
 .addon input{width:17px;height:17px;accent-color:var(--blue-bright);flex-shrink:0;cursor:pointer}
 .addon-name{flex:1;font-size:.89rem;color:var(--text-dim);line-height:1.35}
+.addon-name em{font-style:normal;color:var(--text-mute);font-size:.82em}
 .addon input:checked~.addon-name{color:var(--text)}
 .addon-price{font-family:var(--font-d);font-weight:700;font-size:.85rem;color:var(--text-mute);white-space:nowrap}
 .addon input:checked~.addon-price{color:var(--cyan)}
